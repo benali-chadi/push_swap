@@ -2,7 +2,7 @@
 
 // Swap func
 
-void	swap(t_node **main, t_node **b)
+void	ft_swap(t_node **main, t_node **b)
 {
 	int	tmp;
 
@@ -22,7 +22,7 @@ void	swap(t_node **main, t_node **b)
 
 // Push func
 
-void	push(t_node **a, t_node **b)
+void	ft_push(t_node **a, t_node **b)
 {
 	t_node	*tmp;
 	int		data;
@@ -38,13 +38,15 @@ void	push(t_node **a, t_node **b)
 	}
 	else
 		tmp = (*a)->next;
-	if ((*a)->next->next != *a)
+	if ((*a)->next && (*a)->next->next != *a)
 	{
-		(*a)->next = (*a)->next->next;
 		(*a)->data = (*a)->next->data;
+		(*a)->next = (*a)->next->next;
 	}
 	else
 	{
+		if ((*a)->next)
+			(*a)->data = (*a)->next->data;
 		(*a)->next = NULL;
 		(*a)->prev = NULL;
 	}
@@ -73,10 +75,49 @@ void	push(t_node **a, t_node **b)
 			tmp->prev = *b;
 			(*b)->next = tmp;
 		}
-		swap(b, NULL);
+		ft_swap(b, NULL);
 	}
 	
 }
 
 // Rotate func
+
+void	ft_rotate(t_node **main, t_node **b)
+{
+	int is_empty;
+
+	if ((*main)->prev)
+	{
+		is_empty = (*main)->is_empty;
+		*main = (*main)->prev;
+		(*main)->is_empty = is_empty;
+	}
+
+	if (*b && (*b)->prev)
+	{
+		is_empty = (*b)->is_empty;
+		*b = (*b)->prev;
+		(*b)->is_empty = is_empty;
+	}
+}
+
 // Reverse func
+
+void	ft_reverse(t_node **main, t_node **b)
+{
+	int is_empty;
+
+	if ((*main)->next)
+	{
+		is_empty = (*main)->is_empty;
+		*main = (*main)->next;
+		(*main)->is_empty = is_empty;
+	}
+
+	if (*b && (*b)->next)
+	{
+		is_empty = (*b)->is_empty;
+		*b = (*b)->next;
+		(*b)->is_empty = is_empty;
+	}
+}

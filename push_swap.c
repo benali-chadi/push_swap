@@ -4,9 +4,14 @@ void	print_stack(t_node *main)
  {
 	t_node *tmp;
 	
+	if (main->is_empty)
+	{
+		printf("empty\n");
+		return ;
+	}
 	printf("%d\n", main->data);
 	tmp = main->next;
-	while (tmp != main)
+	while (tmp && tmp != main)
 	{
 		printf("%d\n", tmp->data);
 		tmp = tmp->next;
@@ -29,6 +34,7 @@ void	add_last(t_node **main, t_node *new)
 	while (tmp->next != *main)
 		tmp = tmp->next;
 	
+	(*main)->prev = new;
 	tmp->next = new;
 	new->prev = tmp;
 	new->next = *main;
@@ -78,9 +84,27 @@ int main(int ac, char **av)
 			add_last(&main, new);
 			i++;
 		}
-		push(&main, &main_b);
-		push(&main, &main_b);
-		push(&main, &main_b);
+		ft_push(&main, &main_b);
+		ft_push(&main, &main_b);
+		ft_push(&main, &main_b);
+		
+		printf("stack a\n");
+		print_stack(main);
+		printf("\nstack b\n");
+		print_stack(main_b);
+		
+		printf("\nAfter 2 Rotations\n");
+
+		ft_rotate(&main, &main_b);
+		ft_rotate(&main, &main_b);
+		printf("stack a\n");
+		print_stack(main);
+		printf("\nstack b\n");
+		print_stack(main_b);
+
+		printf("\nAfter 1 reverse\n");
+
+		ft_reverse(&main, &main_b);
 		printf("stack a\n");
 		print_stack(main);
 		printf("\nstack b\n");

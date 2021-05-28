@@ -27,7 +27,9 @@ typedef struct s_node
 void	add_last(t_node **main, t_node *new);
 
 // Tools
-void	swap(t_node **main, t_node **b);
-void	push(t_node **a, t_node **b);
+void	ft_swap(t_node **main, t_node **b);
+void	ft_push(t_node **a, t_node **b);
+void	ft_rotate(t_node **main, t_node **b);
+void	ft_reverse(t_node **main, t_node **b);
 
 #endif
