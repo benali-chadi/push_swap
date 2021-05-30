@@ -57,11 +57,29 @@ int	check(t_node *main)
 	return (1);
 }
 
+void	init_p(void (*p[12])(t_node **a, t_node **b))
+{
+	p[0] = swap_a;
+	p[1] = swap_b;
+	p[2] = swap_s;
+	p[3] = push_a;
+	p[4] = push_b;
+	p[5] = rotate_a;
+	p[6] = rotate_b;
+	p[7] = rotate_s;
+	p[8] = reverse_a;
+	p[9] = reverse_b;
+	p[10] = reverse_s;
+	p[11] = NULL;
+}
+
 int main(int ac, char **av)
 {
 	int i;
 	t_node *main;
 	t_node *main_b;
+	void (*p[12]) (t_node **a, t_node **b);
+	init_p(p);
 
 	main_b = malloc(sizeof(t_node));
 	main_b->data = 0;
@@ -84,19 +102,20 @@ int main(int ac, char **av)
 			add_last(&main, new);
 			i++;
 		}
-		ft_push(&main, &main_b);
-		ft_push(&main, &main_b);
-		ft_push(&main, &main_b);
-		
+		p[PA](&main, &main_b);
+		p[PA](&main, &main_b);
+		p[PA](&main, &main_b);
+		p[PA](&main, &main_b);
+
 		printf("stack a\n");
 		print_stack(main);
 		printf("\nstack b\n");
 		print_stack(main_b);
 		
 		printf("\nAfter 2 Rotations\n");
-
-		ft_rotate(&main, &main_b);
-		ft_rotate(&main, &main_b);
+		p[RR](&main, &main_b);
+		p[RR](&main, &main_b);
+		
 		printf("stack a\n");
 		print_stack(main);
 		printf("\nstack b\n");
@@ -104,7 +123,7 @@ int main(int ac, char **av)
 
 		printf("\nAfter 1 reverse\n");
 
-		ft_reverse(&main, &main_b);
+		p[RRR](&main, &main_b);
 		printf("stack a\n");
 		print_stack(main);
 		printf("\nstack b\n");
