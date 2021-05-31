@@ -25,6 +25,9 @@ typedef struct s_node
 }				t_node;
 
 void	add_last(t_node **main, t_node *new);
+int		check(t_node *main, t_node *b);
+int		sort(t_node *a, t_node *b, void (*p[12])(t_node **a, t_node **b), int val);
+void	print_stack(t_node *main);
 
 /*
 	** Operations

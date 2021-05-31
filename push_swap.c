@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+#include <time.h>
+
 void	print_stack(t_node *main)
  {
 	t_node *tmp;
@@ -40,17 +42,23 @@ void	add_last(t_node **main, t_node *new)
 	new->next = *main;
 }
 
-int	check(t_node *main)
+int	check(t_node *main, t_node *b)
 {
 	int d;
 	t_node *tmp;
 
+	if (!b->is_empty)
+		return (0);
 	d = main->data;
 	tmp = main->next;
-	while (tmp->next != main)
+	while (tmp != main)
 	{
+		// printf("data=%d\td=%d\n", tmp->data, d);
 		if (tmp->data < d)
+		{
+			// printf("ok2\n");
 			return (0);
+		}
 		d = tmp->data;
 		tmp = tmp->next;
 	}
@@ -81,6 +89,9 @@ int main(int ac, char **av)
 	void (*p[12]) (t_node **a, t_node **b);
 	init_p(p);
 
+	time_t t;
+	srand((unsigned) time(&t));
+
 	main_b = malloc(sizeof(t_node));
 	main_b->data = 0;
 	main_b->next = NULL;
@@ -102,32 +113,33 @@ int main(int ac, char **av)
 			add_last(&main, new);
 			i++;
 		}
-		p[PA](&main, &main_b);
-		p[PA](&main, &main_b);
-		p[PA](&main, &main_b);
-		p[PA](&main, &main_b);
+		sort(main, main_b, p, rand() % 11);
+		// p[PA](&main, &main_b);
+		// p[PA](&main, &main_b);
+		// p[PA](&main, &main_b);
+		// p[PA](&main, &main_b);
 
-		printf("stack a\n");
-		print_stack(main);
-		printf("\nstack b\n");
-		print_stack(main_b);
+		// printf("stack a\n");
+		// print_stack(main);
+		// printf("\nstack b\n");
+		// print_stack(main_b);
 		
-		printf("\nAfter 2 Rotations\n");
-		p[RR](&main, &main_b);
-		p[RR](&main, &main_b);
+		// printf("\nAfter 2 Rotations\n");
+		// p[RR](&main, &main_b);
+		// p[RR](&main, &main_b);
 		
-		printf("stack a\n");
-		print_stack(main);
-		printf("\nstack b\n");
-		print_stack(main_b);
+		// printf("stack a\n");
+		// print_stack(main);
+		// printf("\nstack b\n");
+		// print_stack(main_b);
 
-		printf("\nAfter 1 reverse\n");
+		// printf("\nAfter 1 reverse\n");
 
-		p[RRR](&main, &main_b);
-		printf("stack a\n");
-		print_stack(main);
-		printf("\nstack b\n");
-		print_stack(main_b);
+		// p[RRR](&main, &main_b);
+		// printf("stack a\n");
+		// print_stack(main);
+		// printf("\nstack b\n");
+		// print_stack(main_b);
 	}
 	return (0);
 }
