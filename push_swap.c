@@ -81,15 +81,33 @@ void	init_p(void (*p[12])(t_node **a, t_node **b))
 	p[11] = NULL;
 }
 
+void	init_ops(char *ops[11])
+{
+	ops[0] = "SA";
+	ops[1] = "SB";
+	ops[2] = "SS";
+	ops[3] = "PA";
+	ops[4] = "PB";
+	ops[5] = "RA";
+	ops[6] = "RB";
+	ops[7] = "RR";
+	ops[8] = "RRA";
+	ops[9] = "RRB";
+	ops[10] = "RRR";
+}
+
 int main(int ac, char **av)
 {
 	int i;
 	t_node *main;
 	t_node *main_b;
-	void (*p[12]) (t_node **a, t_node **b);
-	init_p(p);
+	t_utils utils;
+	// void (*p[12]) (t_node **a, t_node **b);
+	init_p(utils.p);
 
 	time_t t;
+	// char *ops[11];
+	init_ops(utils.ops);
 	srand((unsigned) time(&t));
 
 	main_b = malloc(sizeof(t_node));
@@ -113,33 +131,7 @@ int main(int ac, char **av)
 			add_last(&main, new);
 			i++;
 		}
-		sort(main, main_b, p, rand() % 11);
-		// p[PA](&main, &main_b);
-		// p[PA](&main, &main_b);
-		// p[PA](&main, &main_b);
-		// p[PA](&main, &main_b);
-
-		// printf("stack a\n");
-		// print_stack(main);
-		// printf("\nstack b\n");
-		// print_stack(main_b);
-		
-		// printf("\nAfter 2 Rotations\n");
-		// p[RR](&main, &main_b);
-		// p[RR](&main, &main_b);
-		
-		// printf("stack a\n");
-		// print_stack(main);
-		// printf("\nstack b\n");
-		// print_stack(main_b);
-
-		// printf("\nAfter 1 reverse\n");
-
-		// p[RRR](&main, &main_b);
-		// printf("stack a\n");
-		// print_stack(main);
-		// printf("\nstack b\n");
-		// print_stack(main_b);
+		sort(main, main_b, utils, rand() % 11, 0);
 	}
 	return (0);
 }

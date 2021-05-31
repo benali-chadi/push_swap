@@ -24,9 +24,16 @@ typedef struct s_node
 	struct s_node *prev;
 }				t_node;
 
+typedef struct	s_utils
+{
+	void	(*p[12]) (t_node **a, t_node **b);
+	char	*ops[11];
+	int		operations[1000];
+}				t_utils;
+
 void	add_last(t_node **main, t_node *new);
 int		check(t_node *main, t_node *b);
-int		sort(t_node *a, t_node *b, void (*p[12])(t_node **a, t_node **b), int val);
+int		sort(t_node *a, t_node *b, t_utils utils, int val, int i);
 void	print_stack(t_node *main);
 
 /*
