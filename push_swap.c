@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+#include <time.h>
+
 void	print_stack(t_node *main)
  {
 	t_node *tmp;
@@ -40,14 +42,14 @@ void	add_last(t_node **main, t_node *new)
 	new->next = *main;
 }
 
-int	check(t_node *main)
+int check_a(t_node *main)
 {
 	int d;
 	t_node *tmp;
 
 	d = main->data;
 	tmp = main->next;
-	while (tmp->next != main)
+	while (tmp != main)
 	{
 		if (tmp->data < d)
 			return (0);
@@ -57,20 +59,58 @@ int	check(t_node *main)
 	return (1);
 }
 
+int	check(t_node *main, t_node *b)
+{
+	int d;
+	t_node *tmp;
+
+	if (!b->is_empty)
+		return (0);
+	d = main->data;
+	tmp = main->next;
+	while (tmp != main)
+	{
+		// printf("data=%d\td=%d\n", tmp->data, d);
+		if (tmp->data < d)
+		{
+			// printf("ok2\n");
+			return (0);
+		}
+		d = tmp->data;
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 void	init_p(void (*p[12])(t_node **a, t_node **b))
 {
 	p[0] = swap_a;
-	p[1] = swap_b;
-	p[2] = swap_s;
-	p[3] = push_a;
-	p[4] = push_b;
-	p[5] = rotate_a;
+	p[1] = rotate_a;
+	p[2] = reverse_a;
+	p[3] = push_b;
+	p[4] = push_a;
+	p[5] = swap_b;
 	p[6] = rotate_b;
-	p[7] = rotate_s;
-	p[8] = reverse_a;
-	p[9] = reverse_b;
+	p[7] = reverse_b;
+	p[8] = swap_s;
+	p[9] = rotate_s;
 	p[10] = reverse_s;
 	p[11] = NULL;
+}
+
+void	init_ops(char *ops[11])
+{
+	ops[0] = "SA";
+	ops[1] = "RA";
+	ops[2] = "RRA";
+	ops[3] = "PB";
+	ops[4] = "PA";
+	ops[5] = "SB";
+	ops[6] = "RB";
+	ops[7] = "RRB";
+	ops[8] = "SS";
+	ops[9] = "RR";
+	ops[10] = "RRR";
 }
 
 int main(int ac, char **av)
@@ -78,8 +118,14 @@ int main(int ac, char **av)
 	int i;
 	t_node *main;
 	t_node *main_b;
-	void (*p[12]) (t_node **a, t_node **b);
-	init_p(p);
+	t_utils utils;
+	// void (*p[12]) (t_node **a, t_node **b);
+	init_p(utils.p);
+
+	time_t t;
+	// char *ops[11];
+	init_ops(utils.ops);
+	srand((unsigned) time(&t));
 
 	main_b = malloc(sizeof(t_node));
 	main_b->data = 0;
@@ -102,32 +148,14 @@ int main(int ac, char **av)
 			add_last(&main, new);
 			i++;
 		}
-		p[PA](&main, &main_b);
-		p[PA](&main, &main_b);
-		p[PA](&main, &main_b);
-		p[PA](&main, &main_b);
-
-		printf("stack a\n");
-		print_stack(main);
-		printf("\nstack b\n");
-		print_stack(main_b);
-		
-		printf("\nAfter 2 Rotations\n");
-		p[RR](&main, &main_b);
-		p[RR](&main, &main_b);
-		
-		printf("stack a\n");
-		print_stack(main);
-		printf("\nstack b\n");
-		print_stack(main_b);
-
-		printf("\nAfter 1 reverse\n");
-
-		p[RRR](&main, &main_b);
-		printf("stack a\n");
-		print_stack(main);
-		printf("\nstack b\n");
-		print_stack(main_b);
+		utils.num = i - 1;
+		if (utils.num <= 3)
+			utils.num = 3;
+		else if (utils.num <= 5)
+			utils.num = 5;
+		else
+			utils.num = 11;
+		sort_five_nums(main, main_b, utils);
 	}
 	return (0);
 }

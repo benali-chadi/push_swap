@@ -4,10 +4,10 @@ void	ft_rotate(t_node **main)
 {
 	int	is_empty;
 
-	if ((*main)->prev)
+	if ((*main)->next)
 	{
 		is_empty = (*main)->is_empty;
-		*main = (*main)->prev;
+		*main = (*main)->next;
 		(*main)->is_empty = is_empty;
 	}
 }

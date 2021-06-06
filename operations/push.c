@@ -68,12 +68,12 @@ void	ft_push(t_node **a, t_node **b)
 	push_to_b(b, data, tmp);
 }
 
-void    push_a(t_node **a, t_node **b)
+void	push_a(t_node **a, t_node **b)
 {
-    ft_push(a, b);
+	ft_push(b, a);
 }
 
-void    push_b(t_node **a, t_node **b)
+void	push_b(t_node **a, t_node **b)
 {
-    ft_push(b, a);
+	ft_push(a, b);
 }
