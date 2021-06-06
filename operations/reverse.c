@@ -4,10 +4,10 @@ void	ft_reverse(t_node **main)
 {
 	int	is_empty;
 
-	if ((*main)->next)
+	if ((*main)->prev)
 	{
 		is_empty = (*main)->is_empty;
-		*main = (*main)->next;
+		*main = (*main)->prev;
 		(*main)->is_empty = is_empty;
 	}
 }
