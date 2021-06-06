@@ -12,20 +12,20 @@ void	ft_reverse(t_node **main)
 	}
 }
 
-void    reverse_a(t_node **a, t_node **b)
+void	reverse_a(t_node **a, t_node **b)
 {
-    (void)b;
-    ft_reverse(a);
+	(void)b;
+	ft_reverse(a);
 }
 
-void    reverse_b(t_node **a, t_node **b)
+void	reverse_b(t_node **a, t_node **b)
 {
-    (void)a;
-    ft_reverse(b);
+	(void)a;
+	ft_reverse(b);
 }
 
 void    reverse_s(t_node **a, t_node **b)
 {
-    ft_reverse(a);
-    ft_reverse(b);
+	ft_reverse(a);
+	ft_reverse(b);
 }

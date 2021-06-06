@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/Users/cbenali-/Desktop/push_swap/a.out",
-			"args": ["3", "2", "1"],
+			"args": ["1", "5", "2", "4", "3", "7", "6", "8"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

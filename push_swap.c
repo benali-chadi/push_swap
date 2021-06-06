@@ -47,6 +47,8 @@ int check_a(t_node *main)
 	int d;
 	t_node *tmp;
 
+	if (!main->next)
+		return (0);
 	d = main->data;
 	tmp = main->next;
 	while (tmp != main)
