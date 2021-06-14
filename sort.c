@@ -79,12 +79,12 @@ void	sort_five_nums(t_node *a, t_node *b, t_utils utils)
 			utils.p[RA](&a, &b);
 			printf("RA\n");
 		}
-		else if (a->next && a->next->data > a->next->next->data)
+		else if (a->next != a && a->next->data > a->next->next->data)
 		{
 			utils.p[RRA](&a, &b);
 			printf("RRA\n");
 		}
-		else if (a->next && a->data > a->next->data)
+		else if (a->next != a && a->data > a->next->data)
 		{
 			utils.p[SA](&a, &b);
 			printf("SA\n");
@@ -94,34 +94,38 @@ void	sort_five_nums(t_node *a, t_node *b, t_utils utils)
 			utils.p[PA](&a, &b);
 			printf("PA\n");
 		}
-		else if (!check_b(b))
-		{
-			if (b->data < get_last_data(b))
-			{
-				utils.p[RB](&a, &b);
-				printf("RB\n");
-			}
-			else if (b->next->data < b->next->next->data)
-			{
-				utils.p[RRB](&a, &b);
-				printf("RRB\n");
-			}
-			else if (b->data < b->next->data)
-			{
-				utils.p[SB](&a, &b);
-				printf("SB\n");
-			}
-			// else if (check_a(b))
-			// {
-			// 	utils.p[PB](&a, &b);
-			// 	printf("PB\n");
-			// }
-		}
+		// else if (!check_b(b))
+		// {
+		// 	if (b->data < get_last_data(b))
+		// 	{
+		// 		utils.p[RB](&a, &b);
+		// 		printf("RB\n");
+		// 	}
+		// 	else if (b->next->data < b->next->next->data)
+		// 	{
+		// 		utils.p[RRB](&a, &b);
+		// 		printf("RRB\n");
+		// 	}
+		// 	else if (b->data < b->next->data)
+		// 	{
+		// 		utils.p[SB](&a, &b);
+		// 		printf("SB\n");
+		// 	}
+		// 	// else if (check_a(b))
+		// 	// {
+		// 	// 	utils.p[PB](&a, &b);
+		// 	// 	printf("PB\n");
+		// 	// }
+		// }
 		else if (!a->is_empty)
 		{
 			utils.p[PB](&a, &b);
 			printf("PB\n");
 		}
+		printf("a:\n");
+		print_stack(a);
+		printf("b:\n");
+		print_stack(b);
 		i++;
 	}
 	printf("i=%d\n", i);

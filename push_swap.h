@@ -36,7 +36,7 @@ void	add_last(t_node **main, t_node *new);
 int		check(t_node *main, t_node *b);
 int		check_a(t_node *main);
 int		check_b(t_node *main);
-int		sort(t_node *a, t_node *b, t_utils utils, int val, int i);
+void	sort(t_node *a, t_node *b, t_utils utils);
 void	print_stack(t_node *main);
 
 t_node	*sort_three_nums(t_node *a, t_node *b, t_utils utils);
