@@ -4,7 +4,7 @@ void	ft_reverse(t_node **main)
 {
 	int	is_empty;
 
-	if ((*main)->prev)
+	if ((*main)->prev != *main)
 	{
 		is_empty = (*main)->is_empty;
 		*main = (*main)->prev;

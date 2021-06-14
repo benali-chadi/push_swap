@@ -94,6 +94,29 @@ void	sort_five_nums(t_node *a, t_node *b, t_utils utils)
 			utils.p[PA](&a, &b);
 			printf("PA\n");
 		}
+		else if (!check_b(b))
+		{
+			if (b->data < get_last_data(b))
+			{
+				utils.p[RB](&a, &b);
+				printf("RB\n");
+			}
+			else if (b->next->data < b->next->next->data)
+			{
+				utils.p[RRB](&a, &b);
+				printf("RRB\n");
+			}
+			else if (b->data < b->next->data)
+			{
+				utils.p[SB](&a, &b);
+				printf("SB\n");
+			}
+			// else if (check_a(b))
+			// {
+			// 	utils.p[PB](&a, &b);
+			// 	printf("PB\n");
+			// }
+		}
 		else if (!a->is_empty)
 		{
 			utils.p[PB](&a, &b);
@@ -106,4 +129,18 @@ void	sort_five_nums(t_node *a, t_node *b, t_utils utils)
 	print_stack(a);
 	printf("b:\n");
 	print_stack(b);
+}
+
+void	sort(t_node *a, t_node *b, t_utils utils)
+{
+	while (check(a, b))
+	{
+		// choose the smallest not sorted five elements in the stack a
+		// push the five elements to stack b
+		while (check_b(b))
+		{
+			// sort the elements
+		}
+		// push the elements back to stack a
+	}
 }

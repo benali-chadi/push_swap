@@ -24,7 +24,7 @@ void	add_last(t_node **main, t_node *new)
 {
 	t_node *tmp;
 
-	if (!(*main)->next)
+	if ((*main)->next == *main)
 	{
 		(*main)->next = new;
 		(*main)->prev = new;
@@ -42,12 +42,31 @@ void	add_last(t_node **main, t_node *new)
 	new->next = *main;
 }
 
+int	check_b(t_node *main)
+{
+	int d;
+	t_node *tmp;
+
+	if (main->next == main || main->is_empty)
+		return (1);
+	d = main->data;
+	tmp = main->next;
+	while (tmp != main)
+	{
+		if (tmp->data > d)
+			return (0);
+		d = tmp->data;
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 int check_a(t_node *main)
 {
 	int d;
 	t_node *tmp;
 
-	if (!main->next)
+	if (main->next == main || main->is_empty)
 		return (0);
 	d = main->data;
 	tmp = main->next;
@@ -131,8 +150,8 @@ int main(int ac, char **av)
 
 	main_b = malloc(sizeof(t_node));
 	main_b->data = 0;
-	main_b->next = NULL;
-	main_b->prev = NULL;
+	main_b->next = main_b;
+	main_b->prev = main_b;
 	main_b->is_empty = 1;
 
 	if (ac > 1)
@@ -140,8 +159,8 @@ int main(int ac, char **av)
 		i = 2;
 		main = malloc(sizeof(t_node));
 		main->data = atoi(av[1]);
-		main->next = NULL;
-		main->prev = NULL;
+		main->next = main;
+		main->prev = main;
 		main->is_empty = 0;
 		while (av[i])
 		{
@@ -158,6 +177,14 @@ int main(int ac, char **av)
 		else
 			utils.num = 11;
 		sort_five_nums(main, main_b, utils);
+		// utils.p[PB](&main, &main_b);
+		// utils.p[PB](&main, &main_b);
+		// utils.p[PB](&main, &main_b);
+		// utils.p[PA](&main, &main_b);
+		// printf("a\n");
+		// print_stack(main);
+		// printf("b\n");
+		// print_stack(main_b);
 	}
 	return (0);
 }

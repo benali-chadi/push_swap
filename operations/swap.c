@@ -4,7 +4,7 @@ void	ft_swap(t_node **main)
 {
 	int	tmp;
 
-	if (!(*main)->next)
+	if ((*main)->next == *main || (*main)->is_empty)
 		return ;
 	tmp = (*main)->data;
 	(*main)->data = (*main)->next->data;
