@@ -122,10 +122,6 @@ void	sort_five_nums(t_node *a, t_node *b, t_utils utils)
 			utils.p[PB](&a, &b);
 			printf("PB\n");
 		}
-		printf("a:\n");
-		print_stack(a);
-		printf("b:\n");
-		print_stack(b);
 		i++;
 	}
 	printf("i=%d\n", i);
@@ -137,14 +133,81 @@ void	sort_five_nums(t_node *a, t_node *b, t_utils utils)
 
 void	sort(t_node *a, t_node *b, t_utils utils)
 {
-	while (check(a, b))
+	// while (check(a, b))
+	// {
+	// 	// choose the smallest not sorted five elements in the stack a
+	// 	// push the five elements to stack b
+	// 	while (check_b(b))
+	// 	{
+	// 		// sort the elements
+	// 	}
+	// 	// push the elements back to stack a
+	// }
+
+	// push elements to stack b
+	while (!a->is_empty)
 	{
-		// choose the smallest not sorted five elements in the stack a
-		// push the five elements to stack b
-		while (check_b(b))
+		// get elm from the sorted array
+		// get len/2 of a
+		int i; // = the index of the a->data = elm
+		while (i != 0)
 		{
-			// sort the elements
+			// i = the index of the a->data = elm
+			/*
+				if (i == 1)
+					sa;
+				if (i < middle part)
+					ra;
+				if (i >= middle part)
+					rra;
+			*/
 		}
-		// push the elements back to stack a
+		// pb
 	}
+	// push the elements back to stack a
+	while (!b->is_empty)
+	{
+		// pa
+	}
+}
+
+int	*sort_array(t_node *a)
+{
+	t_node	*tmp;
+	int		*arr;
+	int		i;
+	int		j;
+	int 	len;
+
+	len = stack_len(a);
+	i = 0;
+	arr = malloc(len * sizeof(int));
+	arr[i] = a->data;
+	tmp = a->next;
+	i++;
+	// fill the arr
+	while (tmp != a)
+	{
+		arr[i++] = tmp->data;
+		tmp = tmp->next;
+	}
+
+	// sort the arr from smallest to biggest
+	i = 1;
+	while (i < len)
+	{
+		j = i - 1;
+		while (arr[i] < arr[j] && j >= 0)
+		{
+			arr[j + 1] = arr[j];
+			--j;
+		}
+		arr[j + 1] = arr[i];
+		i++;
+	}
+	i = 0;
+	while (i < len)
+		printf("%d ", arr[i++]);
+	printf("\n");
+	return (arr);
 }
