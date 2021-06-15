@@ -69,7 +69,6 @@ t_node	*sort_three_nums(t_node *a, t_node *b, t_utils utils)
 
 t_node	*sort_five_nums(t_node *a, t_node *b, t_utils utils, int *i)
 {
-	*i = 0;
 	while (!check(a, b))
 	{
 		if (a->data > get_last_data(a))
@@ -152,18 +151,18 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 				utils.p[SA](&a, &b);
 				printf("SA\n");
 			}
-			else if (i < mid)
+			else if (i <= mid)
 			{
 
 				utils.p[RA](&a, &b);
 				printf("RA\n");
 			}
-			else if (i >= mid)
+			else if (i > mid)
 			{
 				utils.p[RRA](&a, &b);
 				printf("RRA\n");
 			}
-			i = get_smlst_elm(a, elm);// the index of the a->data = elm
+			i = get_smlst_elm(a, elm); // the index of the a->data = elm
 			count++;
 		}
 		utils.p[PB](&a, &b);
@@ -171,18 +170,19 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 		count++;
 	}
 	a = sort_five_nums(a, b, utils, &count);
+	printf("count = %d\n", count);
+	count = 0;
 	// push the elements back to stack a
 	while (!b->is_empty)
 	{
+		printf("ok\n");
 		utils.p[PA](&a, &b);
-		printf("PA\n");
+		// printf("PA\n");
 		count++;
 	}
+	// printf("a:\n");
+	// print_stack(a);
 	printf("count = %d\n", count);
-	printf("a:\n");
-	print_stack(a);
-	printf("b:\n");
-	print_stack(b);
 }
 
 int	*sort_array(t_node *a, int len)
