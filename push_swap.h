@@ -41,7 +41,7 @@ void	sort(t_node *a, t_node *b, t_utils utils);
 void	print_stack(t_node *main);
 
 t_node	*sort_three_nums(t_node *a, t_node *b, t_utils utils);
-void	sort_five_nums(t_node *a, t_node *b, t_utils utils);
+t_node	*sort_five_nums(t_node *a, t_node *b, t_utils utils, int *i);
 
 int		stack_len(t_node *main);
 int		*sort_array(t_node *a, int len);
