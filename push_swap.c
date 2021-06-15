@@ -177,6 +177,7 @@ int main(int ac, char **av)
 		else
 			utils.num = 11;
 		utils.arr = sort_array(main, stack_len(main));
+		utils.len = stack_len(main);
 		sort(main, main_b, utils);
 		int i = 0;
 		// sort_five_nums(main, main_b, utils, &i);
