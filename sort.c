@@ -134,11 +134,22 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 	// }
 
 	// push elements to stack b
+	t_node *tmp;
+	tmp = malloc(sizeof(t_node));
+	tmp->data = 0;
+	tmp->next = tmp;
+	tmp->prev = tmp;
+	tmp->is_empty = 1;
 	int count = 0;
 	int j = 0;
+	int len = stack_len(a);
+	int chunk[10];
 	while (stack_len(a) > 5)//!a->is_empty)
 	{
 		// get elm from the sorted array
+		int end = j + 10;
+		for (int c = 0; c < end; c++)
+			chunk[c] = utils.arr[j++];
 		int elm = utils.arr[j++];
 		// get len/2 of a
 		int mid = stack_len(a) / 2;
@@ -169,13 +180,12 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 		printf("PB\n");
 		count++;
 	}
-	a = sort_five_nums(a, b, utils, &count);
+	a = sort_five_nums(a, tmp, utils, &count);
 	printf("count = %d\n", count);
 	count = 0;
 	// push the elements back to stack a
 	while (!b->is_empty)
 	{
-		printf("ok\n");
 		utils.p[PA](&a, &b);
 		// printf("PA\n");
 		count++;
