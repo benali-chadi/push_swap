@@ -16,6 +16,8 @@
 # define RR 9
 # define RRR 10
 
+# define CHUNK_LEN 40
+
 typedef struct s_node
 {
 	int	data;
@@ -30,6 +32,7 @@ typedef struct	s_utils
 	char	*ops[11];
 	int		operations[1000];
 	int		num;
+	int		len;
 	int		*arr;
 }				t_utils;
 
