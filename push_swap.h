@@ -30,6 +30,7 @@ typedef struct	s_utils
 	char	*ops[11];
 	int		operations[1000];
 	int		num;
+	int		*arr;
 }				t_utils;
 
 void	add_last(t_node **main, t_node *new);
@@ -43,7 +44,7 @@ t_node	*sort_three_nums(t_node *a, t_node *b, t_utils utils);
 void	sort_five_nums(t_node *a, t_node *b, t_utils utils);
 
 int		stack_len(t_node *main);
-int		*sort_array(t_node *a);
+int		*sort_array(t_node *a, int len);
 
 /*
 	** Operations

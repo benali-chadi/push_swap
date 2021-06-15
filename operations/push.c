@@ -47,6 +47,7 @@ static void	push_from_a(t_node **a)
 	{
 		(*a)->data = (*a)->next->data;
 		(*a)->next = (*a)->next->next;
+		(*a)->next->prev = *a;
 	}
 	else
 	{

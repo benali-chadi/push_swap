@@ -131,6 +131,25 @@ void	sort_five_nums(t_node *a, t_node *b, t_utils utils)
 	print_stack(b);
 }
 
+int	get_smlst_elm(t_node *a, int elm)
+{
+	t_node *tmp;
+	int i;
+
+	i = 0;
+	if (elm == a->data)
+		return (i);
+	tmp = a->next;
+	i++;
+	while (tmp != a)
+	{
+		if (elm == tmp->data)
+			return (i);
+		tmp = tmp->next;
+		i++;
+	}
+}
+
 void	sort(t_node *a, t_node *b, t_utils utils)
 {
 	// while (check(a, b))
@@ -145,39 +164,62 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 	// }
 
 	// push elements to stack b
+	int count = 0;
+	int j = 0;
 	while (!a->is_empty)
 	{
 		// get elm from the sorted array
+		int elm = utils.arr[j++];
 		// get len/2 of a
-		int i; // = the index of the a->data = elm
+		int mid = stack_len(a) / 2;
+		int i = get_smlst_elm(a, elm); // = the index of the a->data = elm
+		printf("elm=%d\n", elm);
 		while (i != 0)
 		{
-			// i = the index of the a->data = elm
-			/*
-				if (i == 1)
-					sa;
-				if (i < middle part)
-					ra;
-				if (i >= middle part)
-					rra;
-			*/
+			if (i == 1)
+			{
+				utils.p[SA](&a, &b);
+				printf("SA\n");
+			}
+			else if (i < mid)
+			{
+
+				utils.p[RA](&a, &b);
+				printf("RA\n");
+			}
+			else if (i >= mid)
+			{
+				utils.p[RRA](&a, &b);
+				printf("RRA\n");
+			}
+			i = get_smlst_elm(a, elm);// the index of the a->data = elm
+			count++;
 		}
-		// pb
+		utils.p[PB](&a, &b);
+		printf("PB\n");
+		count++;
 	}
 	// push the elements back to stack a
 	while (!b->is_empty)
 	{
-		// pa
+		utils.p[PA](&a, &b);
+		printf("PA\n");
+		count++;
 	}
+	printf("count = %d\n", count);
+	printf("a:\n");
+	print_stack(a);
+	printf("b:\n");
+	print_stack(b);
 }
 
-int	*sort_array(t_node *a)
+int	*sort_array(t_node *a, int len)
 {
 	t_node	*tmp;
-	int		*arr;
 	int		i;
 	int		j;
-	int 	len;
+	int		*arr;
+	int		key;
 
 	len = stack_len(a);
 	i = 0;
@@ -197,17 +239,18 @@ int	*sort_array(t_node *a)
 	while (i < len)
 	{
 		j = i - 1;
-		while (arr[i] < arr[j] && j >= 0)
+		key = arr[i];
+		while (key < arr[j] && j >= 0)
 		{
 			arr[j + 1] = arr[j];
 			--j;
 		}
-		arr[j + 1] = arr[i];
+		arr[j + 1] = key;
 		i++;
 	}
-	i = 0;
-	while (i < len)
-		printf("%d ", arr[i++]);
-	printf("\n");
+	// i = 0;
+	// while (i < len)
+	// 	printf("%d ", arr[i++]);
+	// printf("\n");
 	return (arr);
 }
