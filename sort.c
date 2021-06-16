@@ -81,7 +81,6 @@ void	get_elm_to_top(t_node *a, t_node *b, t_utils utils, int elm, int *count)
 	}
 	while (i != 0)
 	{
-		printf("elm=%d\tmid=%d\ti=%d\n", elm, mid, i);
 		if (i == 1)
 			ft_putstr_fd(utils.p[SA + utils.is_b](&a, &b), 1);
 		else if (i <= mid)

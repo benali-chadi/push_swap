@@ -85,13 +85,14 @@ int main(int ac, char **av)
 
 		utils.arr = sort_array(main, stack_len(main));
 		utils.len = stack_len(main);
-		if (utils.len < 10)
-		{
-			utils.chunk_size = 0;
-			sort_few_nums(main, main_b, utils);
-			return (0);
-		}
-		else if (utils.len <= 100)
+		// if (utils.len <= 5)
+		// {
+		// 	printf("ok\n");
+		// 	utils.chunk_size = 0;
+		// 	sort_few_nums(main, main_b, utils);
+		// 	return (0);
+		// }
+		 if (utils.len <= 100)
 			utils.chunk_size = 10;
 		else
 			utils.chunk_size = 40;
