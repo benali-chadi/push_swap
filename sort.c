@@ -64,36 +64,36 @@ t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils)
 // choose the number with least moves to move to stack b (from the top and the bottom nad compare who's the closest)
 // repeat this until the chunk is empty
 
-void	get_elm_to_top(t_node *a, t_node *b, t_utils utils, int elm, int *count)
+void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm, int *count)
 {
 	int i;
 	int mid;
 
 	if (!utils.is_b)
 	{
-		mid = stack_len(a) / 2;
-		i = get_index(a, elm);
+		mid = stack_len(*a) / 2;
+		i = get_index(*a, elm);
 	}
 	else
 	{
-		mid = stack_len(b) / 2;
-		i = get_index(b, elm);
+		mid = stack_len(*b) / 2;
+		i = get_index(*b, elm);
 	}
 	while (i != 0)
 	{
 		if (i == 1)
-			ft_putstr_fd(utils.p[SA + utils.is_b](&a, &b), 1);
+			ft_putstr_fd(utils.p[SA + utils.is_b](a, b), 1);
 		else if (i <= mid)
-			ft_putstr_fd(utils.p[RA + utils.is_b](&a, &b), 1);
+			ft_putstr_fd(utils.p[RA + utils.is_b](a, b), 1);
 		else if (i > mid)
-			ft_putstr_fd(utils.p[RRA + utils.is_b](&a, &b), 1);
+			ft_putstr_fd(utils.p[RRA + utils.is_b](a, b), 1);
 		if (!utils.is_b)
-			i = get_index(a, elm);
+			i = get_index(*a, elm);
 		else
-			i = get_index(b, elm);
+			i = get_index(*b, elm);
 		(*count)++;
 	}
-	ft_putstr_fd(utils.p[PB + utils.is_b](&a, &b), 1);
+	ft_putstr_fd(utils.p[PB + utils.is_b](a, b), 1);
 	(*count)++;
 }
 
@@ -115,7 +115,7 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 		while (keep_looping(a, chunk, utils) && !a->is_empty)
 		{
 			elm = get_elm(a, chunk, utils);
-			get_elm_to_top(a, b, utils, elm, &count);
+			get_elm_to_top(&a, &b, utils, elm, &count);
 		}
 	}
 	j = utils.len - 1;
@@ -123,7 +123,7 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 	while (!b->is_empty)
 	{
 		elm = utils.arr[j--];
-		get_elm_to_top(a, b, utils, elm, &count);
+		get_elm_to_top(&a, &b, utils, elm, &count);
 	}
 	printf("a:\n");
 	print_stack(a);
