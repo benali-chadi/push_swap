@@ -67,7 +67,7 @@ t_node	*sort_three_nums(t_node *a, t_node *b, t_utils utils)
 	return (a);
 }
 
-t_node	*sort_five_nums(t_node *a, t_node *b, t_utils utils, int *i)
+t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils)
 {
 	while (!check(a, b))
 	{
@@ -91,12 +91,30 @@ t_node	*sort_five_nums(t_node *a, t_node *b, t_utils utils, int *i)
 			utils.p[PA](&a, &b);
 			printf("PA\n");
 		}
+		else if (!check_b(b))
+		{
+			if (b->data < get_last_data(b))
+			{
+				utils.p[RB](&a, &b);
+				printf("RB\n");
+			}
+			else if (b->next->data < b->next->next->data)
+			{
+				utils.p[RRB](&a, &b);
+				printf("RRB\n");
+			}
+			else if (b->data < b->next->data)
+			{
+				utils.p[SB](&a, &b);
+				printf("SB\n");
+			}
+		}
+
 		else if (!a->is_empty)
 		{
 			utils.p[PB](&a, &b);
 			printf("PB\n");
 		}
-		(*i)++;
 	}
 	return (a);
 }
@@ -120,122 +138,28 @@ int	get_index(t_node *a, int elm)
 	}
 }
 
-// get a chunk of 5
+// get a chunk of CHUNK_SIZE
 // choose the number with least moves to move to stack b (from the top and the bottom nad compare who's the closest)
 // repeat this until the chunk is empty
-
-int		compare(int chunk[CHUNK_LEN], int data)
-{
-	int i;
-
-	i = 0;
-	while (i < CHUNK_LEN)
-	{
-		if (chunk[i++] == data)
-			return (1);
-	}
-	return (0);
-}
-
-int		keep_looping(t_node *a, int chunk[CHUNK_LEN])
-{
-	t_node *tmp;
-
-	if (compare(chunk, a->data))
-		return (1);
-	tmp = a->next;
-	while (tmp != a)
-	{
-		if (compare(chunk, tmp->data))
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-int		get_elm(t_node *a, int chunk[CHUNK_LEN])
-{
-	t_node	*tmp;
-	int		elm1;
-	int		elm2;
-	int		i;
-	int		j;
-
-	if (compare(chunk, a->data))
-		return (a->data);
-	tmp = a->next;
-	i = 1;
-	while (tmp != a)
-	{
-		if (compare(chunk, tmp->data))
-		{
-			elm1 = tmp->data;
-			break;
-		}
-		i++;
-		tmp = tmp->next;
-	}
-	tmp = a->prev;
-	j = 1;
-	while (tmp != a)
-	{
-		if (compare(chunk, tmp->data))
-		{
-			elm2 = tmp->data;
-			break;
-		}
-		j++;
-		tmp = tmp->prev;
-	}
-	if (i <= j)
-		return (elm1);
-	else
-		return (elm2);
-}
 
 void	sort(t_node *a, t_node *b, t_utils utils)
 {
 	// push elements to stack b
-<<<<<<< HEAD
-	t_node *tmp;
-	tmp = malloc(sizeof(t_node));
-	tmp->data = 0;
-	tmp->next = tmp;
-	tmp->prev = tmp;
-	tmp->is_empty = 1;
-	int count = 0;
-	int j = 0;
-	int len = stack_len(a);
-	int chunk[10];
-	while (stack_len(a) > 5)//!a->is_empty)
-	{
-		// get elm from the sorted array
-		int end = j + 10;
-		for (int c = 0; c < end; c++)
-			chunk[c] = utils.arr[j++];
-		int elm = utils.arr[j++];
-		// get len/2 of a
-		int mid = stack_len(a) / 2;
-		int i = get_smlst_elm(a, elm); // = the index of the a->data = elm
-=======
-	int chunk[CHUNK_LEN];
+	int chunk[utils.chunk_size];
 	int count = 0;
 	int j = 0;
 	while (!a->is_empty)
 	{
-		// get elm from the sorted array
-		// int elm = utils.arr[j++];
-
-		// give five numbers to the chunk
+		// give chunk_size numbers to the chunk
 		int c = 0;
-		while (c < CHUNK_LEN && j < utils.len)
+		while (c < utils.chunk_size && j < utils.len)
 			chunk[c++] = utils.arr[j++];
 
 		// loop while the numbers in the chunk are still in the stack
-		while (keep_looping(a, chunk) && !a->is_empty)
+		while (keep_looping(a, chunk, utils) && !a->is_empty)
 		{
 			// choos the closest element
-			int elm = get_elm(a, chunk);
+			int elm = get_elm(a, chunk, utils);
 			// get len/2 of a
 			int mid = stack_len(a) / 2;
 			int i = get_index(a, elm); // = the index of the a->data = elm
@@ -266,10 +190,6 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 			count++;
 		}
 	}
-	// a = sort_five_nums(a, b, utils, &count);
-	// printf("count = %d\n", count);
-	// count = 0;
-
 	// push the elements back to stack a
 	j = utils.len - 1;
 	while (!b->is_empty)
@@ -278,7 +198,6 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 	// get len/2 of a
 		int mid = stack_len(b) / 2;
 		int i = get_index(b, elm); // = the index of the a->data = elm
->>>>>>> 86d445582ab0a326ba32c5d08914094cdda5aec0
 		printf("elm=%d\n", elm);
 		while (i != 0)
 		{
@@ -299,22 +218,9 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 				printf("RRB\n");
 			}
 			i = get_index(b, elm);
-			printf("len = %d\telm = %d\tmid = %d\ti=%d\n", stack_len(b), elm, mid, i); // the index of the a->data = elm
+			// printf("len = %d\telm = %d\tmid = %d\ti=%d\n", stack_len(b), elm, mid, i); // the index of the a->data = elm
 			count++;
 		}
-<<<<<<< HEAD
-		utils.p[PB](&a, &b);
-		printf("PB\n");
-		count++;
-	}
-	a = sort_five_nums(a, tmp, utils, &count);
-	printf("count = %d\n", count);
-	count = 0;
-	// push the elements back to stack a
-	while (!b->is_empty)
-	{
-=======
->>>>>>> 86d445582ab0a326ba32c5d08914094cdda5aec0
 		utils.p[PA](&a, &b);
 		printf("PA\n");
 		count++;
@@ -325,46 +231,4 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 	printf("a:\n");
 	print_stack(a);
 	printf("count = %d\n", count);
-}
-
-int	*sort_array(t_node *a, int len)
-{
-	t_node	*tmp;
-	int		i;
-	int		j;
-	int		*arr;
-	int		key;
-
-	len = stack_len(a);
-	i = 0;
-	arr = malloc(len * sizeof(int));
-	arr[i] = a->data;
-	tmp = a->next;
-	i++;
-	// fill the arr
-	while (tmp != a)
-	{
-		arr[i++] = tmp->data;
-		tmp = tmp->next;
-	}
-
-	// sort the arr from smallest to biggest
-	i = 1;
-	while (i < len)
-	{
-		j = i - 1;
-		key = arr[i];
-		while (key < arr[j] && j >= 0)
-		{
-			arr[j + 1] = arr[j];
-			--j;
-		}
-		arr[j + 1] = key;
-		i++;
-	}
-	// i = 0;
-	// while (i < len)
-	// 	printf("%d ", arr[i++]);
-	// printf("\n");
-	return (arr);
 }
