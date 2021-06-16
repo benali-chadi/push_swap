@@ -12,20 +12,23 @@ void	ft_reverse(t_node **main)
 	}
 }
 
-void	reverse_a(t_node **a, t_node **b)
+char	*reverse_a(t_node **a, t_node **b)
 {
 	(void)b;
 	ft_reverse(a);
+	return ("RRA\n");
 }
 
-void	reverse_b(t_node **a, t_node **b)
+char	*reverse_b(t_node **a, t_node **b)
 {
 	(void)a;
 	ft_reverse(b);
+	return ("RRB\n");
 }
 
-void    reverse_s(t_node **a, t_node **b)
+char	*reverse_s(t_node **a, t_node **b)
 {
 	ft_reverse(a);
 	ft_reverse(b);
+	return ("RRR\n");
 }

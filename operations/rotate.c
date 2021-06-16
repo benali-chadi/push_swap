@@ -12,20 +12,23 @@ void	ft_rotate(t_node **main)
 	}
 }
 
-void    rotate_a(t_node **a, t_node **b)
+char	*rotate_a(t_node **a, t_node **b)
 {
-    (void)b;
-    ft_rotate(a);
+	(void)b;
+	ft_rotate(a);
+	return ("RA\n");
 }
 
-void    rotate_b(t_node **a, t_node **b)
+char	*rotate_b(t_node **a, t_node **b)
 {
-    (void)a;
-    ft_rotate(b);
+	(void)a;
+	ft_rotate(b);
+	return ("RB\n");
 }
 
-void    rotate_s(t_node **a, t_node **b)
+char	*rotate_s(t_node **a, t_node **b)
 {
-    ft_rotate(a);
-    ft_rotate(b);
+	ft_rotate(a);
+	ft_rotate(b);
+	return ("RR\n");
 }

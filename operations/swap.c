@@ -11,20 +11,23 @@ void	ft_swap(t_node **main)
 	(*main)->next->data = tmp;
 }
 
-void    swap_a(t_node **a, t_node **b)
+char	*swap_a(t_node **a, t_node **b)
 {
-    (void)b;
-    ft_swap(a);
+	(void)b;
+	ft_swap(a);
+	return ("SA\n");
 }
 
-void    swap_b(t_node **a, t_node **b)
+char	*swap_b(t_node **a, t_node **b)
 {
-    (void)a;
-    ft_swap(b);
+	(void)a;
+	ft_swap(b);
+	return ("SB\n");
 }
 
-void    swap_s(t_node **a, t_node **b)
+char	*swap_s(t_node **a, t_node **b)
 {
-    ft_swap(a);
-    ft_swap(b);
+	ft_swap(a);
+	ft_swap(b);
+	return ("SS\n");
 }

@@ -57,33 +57,18 @@ int	check(t_node *main, t_node *b)
 	return (1);
 }
 
-void	init_p(void (*p[12])(t_node **a, t_node **b))
+void	init_p(char *(*p[12])(t_node **a, t_node **b))
 {
 	p[0] = swap_a;
-	p[1] = rotate_a;
-	p[2] = reverse_a;
-	p[3] = push_b;
-	p[4] = push_a;
-	p[5] = swap_b;
-	p[6] = rotate_b;
-	p[7] = reverse_b;
+	p[1] = swap_b;
+	p[2] = rotate_a;
+	p[3] = rotate_b;
+	p[4] = reverse_a;
+	p[5] = reverse_b;
+	p[6] = push_b;
+	p[7] = push_a;
 	p[8] = swap_s;
 	p[9] = rotate_s;
 	p[10] = reverse_s;
 	p[11] = NULL;
-}
-
-void	init_ops(char *ops[11])
-{
-	ops[0] = "SA";
-	ops[1] = "RA";
-	ops[2] = "RRA";
-	ops[3] = "PB";
-	ops[4] = "PA";
-	ops[5] = "SB";
-	ops[6] = "RB";
-	ops[7] = "RRB";
-	ops[8] = "SS";
-	ops[9] = "RR";
-	ops[10] = "RRR";
 }

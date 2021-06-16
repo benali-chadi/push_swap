@@ -8,13 +8,13 @@
 // For 500 nums chunk_size 40
 
 # define SA 0
-# define RA 1
-# define RRA 2
-# define PB 3
-# define PA 4
-# define SB 5
-# define RB 6
-# define RRB 7
+# define SB 1
+# define RA 2
+# define RB 3
+# define RRA 4
+# define RRB 5
+# define PB 6
+# define PA 7
 # define SS 8
 # define RR 9
 # define RRR 10
@@ -31,12 +31,11 @@ typedef struct s_node
 
 typedef struct	s_utils
 {
-	void	(*p[12]) (t_node **a, t_node **b);
-	char	*ops[11];
-	int		operations[1000];
+	char	*(*p[12]) (t_node **a, t_node **b);
 	int		len;
 	int		*arr;
 	int		chunk_size;
+	int		is_b;
 }				t_utils;
 
 void	add_last(t_node **main, t_node *new);
@@ -53,6 +52,9 @@ int		*sort_array(t_node *a, int len);
 
 int     get_elm(t_node *a, int *chunk, t_utils utils);
 int		keep_looping(t_node *a, int *chunk, t_utils utils);
+int		get_last_data(t_node *main);
+int		stack_len(t_node *main);
+int		get_index(t_node *a, int elm);
 
 /*
 	** Utils
@@ -62,8 +64,7 @@ void	print_stack(t_node *main);
 int		check(t_node *main, t_node *b);
 int		check_a(t_node *main);
 int		check_b(t_node *main);
-void	init_p(void (*p[12])(t_node **a, t_node **b));
-void	init_ops(char *ops[11]);
+void	init_p(char *(*p[12])(t_node **a, t_node **b));
 int		stack_len(t_node *main);
 
 /*
@@ -71,23 +72,23 @@ int		stack_len(t_node *main);
 */
 
 void	ft_swap(t_node **main);
-void	swap_a(t_node **a, t_node **b);
-void	swap_b(t_node **a, t_node **b);
-void	swap_s(t_node **a, t_node **b);
+char	*swap_a(t_node **a, t_node **b);
+char	*swap_b(t_node **a, t_node **b);
+char	*swap_s(t_node **a, t_node **b);
 
 void	ft_push(t_node **a, t_node **b);
-void	push_a(t_node **a, t_node **b);
-void	push_b(t_node **a, t_node **b);
+char	*push_a(t_node **a, t_node **b);
+char	*push_b(t_node **a, t_node **b);
 
 void	ft_rotate(t_node **main);
-void	rotate_a(t_node **a, t_node **b);
-void	rotate_b(t_node **a, t_node **b);
-void	rotate_s(t_node **a, t_node **b);
+char	*rotate_a(t_node **a, t_node **b);
+char	*rotate_b(t_node **a, t_node **b);
+char	*rotate_s(t_node **a, t_node **b);
 
 void	ft_reverse(t_node **main);
-void	reverse_a(t_node **a, t_node **b);
-void	reverse_b(t_node **a, t_node **b);
-void	reverse_s(t_node **a, t_node **b);
+char	*reverse_a(t_node **a, t_node **b);
+char	*reverse_b(t_node **a, t_node **b);
+char	*reverse_s(t_node **a, t_node **b);
 
 
 #endif

@@ -78,7 +78,6 @@ int main(int ac, char **av)
 	t_utils utils;
 
 	init_p(utils.p);
-	init_ops(utils.ops);
 	init_stack_b(&main_b);
 	if (ac > 1)
 	{
@@ -86,7 +85,7 @@ int main(int ac, char **av)
 
 		utils.arr = sort_array(main, stack_len(main));
 		utils.len = stack_len(main);
-		if (utils.len <= 10)
+		if (utils.len < 10)
 		{
 			utils.chunk_size = 0;
 			sort_few_nums(main, main_b, utils);
