@@ -1,35 +1,5 @@
 #include "push_swap.h"
 
-t_node	*sort_three_nums(t_node *a, t_node *b, t_utils utils)
-{
-	int i;
-
-	i = 0;
-	while (!check_a(a))
-	{
-		if (a->data > a->next->next->data)
-		{
-			utils.p[RA](&a, &b);
-			printf("RA\n");
-		}
-		else if (a->next->data > a->next->next->data)
-		{
-			utils.p[RRA](&a, &b);
-			printf("RRA\n");
-		}
-		else if (a->data > a->next->data)
-		{
-			utils.p[SA](&a, &b);
-			printf("SA\n");
-		}
-	}
-	printf("a:\n");
-	print_stack(a);
-	printf("b:\n");
-	print_stack(b);
-	return (a);
-}
-
 int		for_b(t_node *a, t_node *b, t_utils utils)
 {
 	int	d;
@@ -56,7 +26,6 @@ int		for_b(t_node *a, t_node *b, t_utils utils)
 t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils)
 {
 	int i = 0;
-	int *tmp;
 
 	while (!check(a, b))
 	{
@@ -71,16 +40,13 @@ t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils)
 			ft_putstr_fd(utils.p[PA](&a, &b), 1);
 		else if (!a->is_empty)
 			ft_putstr_fd(utils.p[PB](&a, &b), 1);
-		else if (!check_b(b) && for_b(a, b, utils));
+		else if (!check_b(b) && for_b(a, b, utils))
+		{}
 		i++;
 	}
 	printf("i=%d\n", i);
 	return (a);
 }
-
-// get a chunk of CHUNK_SIZE
-// choose the number with least moves to move to stack b (from the top and the bottom nad compare who's the closest)
-// repeat this until the chunk is empty
 
 void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm, int *count)
 {
@@ -88,15 +54,10 @@ void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm, int *count)
 	int mid;
 
 	if (!utils.is_b)
-	{
 		mid = stack_len(*a) / 2;
-		i = get_index(*a, elm);
-	}
 	else
-	{
 		mid = stack_len(*b) / 2;
-		i = get_index(*b, elm);
-	}
+	i = assing_i(*a, *b, utils, elm);
 	while (i != 0)
 	{
 		if (i == 1)
@@ -105,10 +66,7 @@ void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm, int *count)
 			ft_putstr_fd(utils.p[RA + utils.is_b](a, b), 1);
 		else if (i > mid)
 			ft_putstr_fd(utils.p[RRA + utils.is_b](a, b), 1);
-		if (!utils.is_b)
-			i = get_index(*a, elm);
-		else
-			i = get_index(*b, elm);
+		i = assing_i(*a, *b, utils, elm);
 		(*count)++;
 	}
 	ft_putstr_fd(utils.p[PB + utils.is_b](a, b), 1);

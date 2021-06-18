@@ -55,6 +55,7 @@ int		keep_looping(t_node *a, int *chunk, t_utils utils);
 int		get_last_data(t_node *main);
 int		stack_len(t_node *main);
 int		get_index(t_node *a, int elm);
+int		assing_i(t_node *a, t_node *b, t_utils utils, int elm);
 
 /*
 	** Utils
@@ -66,6 +67,8 @@ int		check_a(t_node *main);
 int		check_b(t_node *main);
 void	init_p(char *(*p[12])(t_node **a, t_node **b));
 int		stack_len(t_node *main);
+void	error_and_exit();
+
 
 /*
 	** Operations

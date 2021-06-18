@@ -32,9 +32,15 @@ void	add_last(t_node **main, t_node *new)
 		new->next = *main;
 		return ;
 	}
+	if (new->data == (*main)->data)
+		error_and_exit();
 	tmp = (*main)->next;
 	while (tmp->next != *main)
+	{
+		if (new->data == tmp->data)
+			error_and_exit();
 		tmp = tmp->next;
+	}
 	
 	(*main)->prev = new;
 	tmp->next = new;
@@ -54,15 +60,27 @@ void	init_stack_b(t_node **b)
 void	init_main(t_node **main, char **av)
 {
 	int i;
+	int j;
+	// int dups_p[214748];
+	// int dups_n[2147483648];
 
 	i = 2;
 	(*main) = malloc(sizeof(t_node));
+	// check the arg
+	j = -1;
+	while (av[1][++j])
+		if (av[1][j] < '0' || av[1][j] > '9')
+			error_and_exit();
 	(*main)->data = atoi(av[1]);
 	(*main)->next = *main;
 	(*main)->prev = *main;
 	(*main)->is_empty = 0;
 	while (av[i])
 	{
+		j = -1;
+		while (av[i][++j])
+			if (av[i][j] < '0' || av[i][j] > '9')
+				error_and_exit();
 		t_node *new = malloc(sizeof(t_node));
 		new->data = atoi(av[i]);
 		add_last(main, new);
@@ -72,7 +90,6 @@ void	init_main(t_node **main, char **av)
 
 int main(int ac, char **av)
 {
-	int i;
 	t_node *main;
 	t_node *main_b;
 	t_utils utils;

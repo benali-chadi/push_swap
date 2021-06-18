@@ -37,7 +37,6 @@ int     get_element(t_node *a, int next, int *i, int *chunk, t_utils utils)
         tmp = a->next;
     else
         tmp = a->prev;
-    
     while (tmp != a)
     {
         if (compare(chunk, tmp->data, utils))
@@ -48,6 +47,7 @@ int     get_element(t_node *a, int next, int *i, int *chunk, t_utils utils)
             tmp = tmp->prev;
         (*i)++;
     }
+	return (0);
 }
 
 int     get_elm(t_node *a, int *chunk, t_utils utils)

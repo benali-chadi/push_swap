@@ -72,3 +72,9 @@ void	init_p(char *(*p[12])(t_node **a, t_node **b))
 	p[10] = reverse_s;
 	p[11] = NULL;
 }
+
+void	error_and_exit()
+{
+	ft_putstr_fd("Error\n", 1);
+	exit(1);
+}
