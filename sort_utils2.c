@@ -8,12 +8,12 @@ int		get_last_data(t_node *main)
 	if (!main->next)
 		return (main->data);
 
-	d = main->next->data;
+	d = main->data;
 	tmp = main->next;
 	while (tmp != main)
 	{
-		tmp = tmp->next;
 		d = tmp->data;
+		tmp = tmp->next;
 	}
 	return (d);
 }

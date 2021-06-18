@@ -85,7 +85,7 @@ int main(int ac, char **av)
 
 		utils.arr = sort_array(main, stack_len(main));
 		utils.len = stack_len(main);
-		if (utils.len <= 5)
+		if (utils.len <= 10)
 		{
 			utils.chunk_size = 0;
 			sort_few_nums(main, main_b, utils);
