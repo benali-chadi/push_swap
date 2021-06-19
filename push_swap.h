@@ -23,13 +23,13 @@
 
 typedef struct s_node
 {
-	int	data;
-	int is_empty;
-	struct s_node *next;
-	struct s_node *prev;
+	long long		data;
+	int 			is_empty;
+	struct s_node	*next;
+	struct s_node	*prev;
 }				t_node;
 
-typedef struct	s_utils
+typedef struct s_utils
 {
 	char	*(*p[12]) (t_node **a, t_node **b);
 	int		len;

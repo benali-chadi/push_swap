@@ -11,11 +11,11 @@ void	print_stack(t_node *main)
 		printf("empty\n");
 		return ;
 	}
-	printf("%d\n", main->data);
+	printf("%lld\n", main->data);
 	tmp = main->next;
 	while (tmp && tmp != main)
 	{
-		printf("%d\n", tmp->data);
+		printf("%lld\n", tmp->data);
 		tmp = tmp->next;
 	}
 }
@@ -61,17 +61,16 @@ void	init_main(t_node **main, char **av)
 {
 	int i;
 	int j;
-	// int dups_p[214748];
-	// int dups_n[2147483648];
 
 	i = 2;
 	(*main) = malloc(sizeof(t_node));
-	// check the arg
 	j = -1;
 	while (av[1][++j])
-		if (av[1][j] < '0' || av[1][j] > '9')
+		if ((av[i][j] < '0' || av[i][j] > '9') && av[i][j] != '-')
 			error_and_exit();
-	(*main)->data = atoi(av[1]);
+	(*main)->data = ft_atoi(av[1]);
+	if ((*main)->data > 2147483647 || (*main)->data < -2147483648)
+		error_and_exit();
 	(*main)->next = *main;
 	(*main)->prev = *main;
 	(*main)->is_empty = 0;
@@ -79,10 +78,12 @@ void	init_main(t_node **main, char **av)
 	{
 		j = -1;
 		while (av[i][++j])
-			if (av[i][j] < '0' || av[i][j] > '9')
+			if ((av[i][j] < '0' || av[i][j] > '9') && av[i][j] != '-')
 				error_and_exit();
 		t_node *new = malloc(sizeof(t_node));
-		new->data = atoi(av[i]);
+		new->data = ft_atoi(av[i]);
+		if (new->data > 2147483647 || new->data < -2147483648)
+			error_and_exit();
 		add_last(main, new);
 		i++;
 	}	
