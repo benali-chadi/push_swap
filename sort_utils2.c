@@ -1,13 +1,12 @@
 #include "push_swap.h"
 
-int		get_last_data(t_node *main)
+int	get_last_data(t_node *main)
 {
 	t_node	*tmp;
 	int		d;
 
 	if (!main->next)
 		return (main->data);
-
 	d = main->data;
 	tmp = main->next;
 	while (tmp != main)
@@ -18,10 +17,10 @@ int		get_last_data(t_node *main)
 	return (d);
 }
 
-int		stack_len(t_node *main)
+int	stack_len(t_node *main)
 {
-	int i;
-	t_node *tmp;
+	int		i;
+	t_node	*tmp;
 
 	i = 0;
 	if (main->is_empty)
@@ -38,8 +37,8 @@ int		stack_len(t_node *main)
 
 int	get_index(t_node *a, int elm)
 {
-	t_node *tmp;
-	int i;
+	t_node	*tmp;
+	int		i;
 
 	i = 0;
 	if (elm == a->data)
@@ -56,10 +55,26 @@ int	get_index(t_node *a, int elm)
 	return (i);
 }
 
-int	assign_i(t_node *a, t_node *b, t_utils utils, int elm)
+int	assing_i(t_node *a, t_node *b, t_utils utils, int elm)
 {
 	if (!utils.is_b)
 		return (get_index(a, elm));
 	else
 		return (get_index(b, elm));
+}
+
+int	keep_looping(t_node *a, int *chunk, t_utils utils)
+{
+	t_node	*tmp;
+
+	if (compare(chunk, a->data, utils))
+		return (1);
+	tmp = a->next;
+	while (tmp != a)
+	{
+		if (compare(chunk, tmp->data, utils))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
 }

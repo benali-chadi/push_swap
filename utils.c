@@ -2,8 +2,8 @@
 
 int	check_b(t_node *main)
 {
-	int d;
-	t_node *tmp;
+	int		d;
+	t_node	*tmp;
 
 	if (main->next == main || main->is_empty)
 		return (1);
@@ -19,10 +19,10 @@ int	check_b(t_node *main)
 	return (1);
 }
 
-int check_a(t_node *main)
+int	check_a(t_node *main)
 {
-	int d;
-	t_node *tmp;
+	int		d;
+	t_node	*tmp;
 
 	if (main->next == main || main->is_empty)
 		return (0);
@@ -40,8 +40,8 @@ int check_a(t_node *main)
 
 int	check(t_node *main, t_node *b)
 {
-	int d;
-	t_node *tmp;
+	int		d;
+	t_node	*tmp;
 
 	if (!b->is_empty)
 		return (0);
@@ -71,4 +71,26 @@ void	init_p(char *(*p[12])(t_node **a, t_node **b))
 	p[9] = rotate_s;
 	p[10] = reverse_s;
 	p[11] = NULL;
+}
+
+void	error_and_exit(char *av, long long data)
+{
+	int	i;
+	int	f;
+
+	i = -1;
+	f = 0;
+	if (!av)
+	{
+		ft_putstr_fd("Error\n", 1);
+		exit(1);
+	}
+	while (av[++i])
+		if ((av[i] < '0' || av[i] > '9') && av[i] != '-')
+			f = 1;
+	if (data > 2147483647 || data < -2147483648 || f)
+	{
+		ft_putstr_fd("Error\n", 1);
+		exit(1);
+	}
 }

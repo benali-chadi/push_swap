@@ -18,7 +18,7 @@
 
 typedef struct s_node
 {
-	int				data;
+	long long		data;
 	int				is_empty;
 	struct s_node	*next;
 	struct s_node	*prev;
@@ -31,6 +31,7 @@ typedef struct s_utils
 	int		*arr;
 	int		chunk_size;
 	int		is_b;
+	int		next;
 }				t_utils;
 
 /*
@@ -47,7 +48,8 @@ int		keep_looping(t_node *a, int *chunk, t_utils utils);
 int		get_last_data(t_node *main);
 int		stack_len(t_node *main);
 int		get_index(t_node *a, int elm);
-int		assign_i(t_node *a, t_node *b, t_utils utils, int elm);
+int		assing_i(t_node *a, t_node *b, t_utils utils, int elm);
+int		compare(int *chunk, int data, t_utils utils);
 
 /*
 	** Utils
@@ -60,6 +62,7 @@ int		check_a(t_node *main);
 int		check_b(t_node *main);
 void	init_p(char *(*p[12])(t_node **a, t_node **b));
 int		stack_len(t_node *main);
+void	error_and_exit(char *av, long long data);
 
 /*
 	** Operations

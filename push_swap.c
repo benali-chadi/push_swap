@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-#include <time.h>
-
 void	print_stack(t_node *main)
 {
 	t_node	*tmp;
@@ -11,11 +9,11 @@ void	print_stack(t_node *main)
 		printf("empty\n");
 		return ;
 	}
-	printf("%d\n", main->data);
+	printf("%lld\n", main->data);
 	tmp = main->next;
 	while (tmp && tmp != main)
 	{
-		printf("%d\n", tmp->data);
+		printf("%lld\n", tmp->data);
 		tmp = tmp->next;
 	}
 }
@@ -32,9 +30,15 @@ void	add_last(t_node **main, t_node *new)
 		new->next = *main;
 		return ;
 	}
+	if (new->data == (*main)->data)
+		error_and_exit(NULL, 0);
 	tmp = (*main)->next;
 	while (tmp->next != *main)
+	{
+		if (new->data == tmp->data)
+			error_and_exit(NULL, 0);
 		tmp = tmp->next;
+	}
 	(*main)->prev = new;
 	tmp->next = new;
 	new->prev = tmp;
@@ -52,19 +56,24 @@ void	init_stack_b(t_node **b)
 
 void	init_main(t_node **main, char **av)
 {
-	int	i;
-	t_node *new;
+	int		i;
+	int		j;
+	t_node	*new;
 
 	i = 2;
 	(*main) = malloc(sizeof(t_node));
-	(*main)->data = atoi(av[1]);
+	j = -1;
+	(*main)->data = ft_atoi(av[1]);
+	error_and_exit(av[1], (*main)->data);
 	(*main)->next = *main;
 	(*main)->prev = *main;
 	(*main)->is_empty = 0;
 	while (av[i])
 	{
+		j = -1;
 		new = malloc(sizeof(t_node));
-		new->data = atoi(av[i]);
+		new->data = ft_atoi(av[i]);
+		error_and_exit(av[i], new->data);
 		add_last(main, new);
 		i++;
 	}	
@@ -72,7 +81,6 @@ void	init_main(t_node **main, char **av)
 
 int	main(int ac, char **av)
 {
-	int		i;
 	t_node	*main;
 	t_node	*main_b;
 	t_utils	utils;
@@ -82,7 +90,6 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		init_main(&main, av);
-
 		utils.arr = sort_array(main, stack_len(main));
 		utils.len = stack_len(main);
 		if (utils.len <= 10)

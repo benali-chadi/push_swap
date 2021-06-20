@@ -26,7 +26,6 @@ int	for_b(t_node *a, t_node *b, t_utils utils)
 t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils)
 {
 	int	i = 0;
-	int	*tmp;
 	int	d;
 
 	while (!check(a, b))
@@ -59,7 +58,7 @@ void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm, int *count)
 		mid = stack_len(*a) / 2;
 	else
 		mid = stack_len(*b) / 2;
-	i = assign_i(*a, *b, utils, elm);
+	i = assing_i(*a, *b, utils, elm);
 	while (i != 0)
 	{
 		if (i == 1)
@@ -68,7 +67,7 @@ void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm, int *count)
 			ft_putstr_fd(utils.p[RA + utils.is_b](a, b), 1);
 		else if (i > mid)
 			ft_putstr_fd(utils.p[RRA + utils.is_b](a, b), 1);
-		i = assign_i(*a, *b, utils, elm);
+		i = assing_i(*a, *b, utils, elm);
 		(*count)++;
 	}
 	ft_putstr_fd(utils.p[PB + utils.is_b](a, b), 1);
