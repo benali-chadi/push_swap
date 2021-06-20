@@ -1,11 +1,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft/libft.h"
-#include <stdio.h>
-
-// For 100 nums chunk_size 10
-// For 500 nums chunk_size 40
+# include "libft/libft.h"
+# include <stdio.h>
 
 # define SA 0
 # define SB 1
@@ -19,27 +16,22 @@
 # define RR 9
 # define RRR 10
 
-// # define utils.chunk_size 40
-
 typedef struct s_node
 {
-	int	data;
-	int is_empty;
-	struct s_node *next;
-	struct s_node *prev;
+	int				data;
+	int				is_empty;
+	struct s_node	*next;
+	struct s_node	*prev;
 }				t_node;
 
-typedef struct	s_utils
+typedef struct s_utils
 {
-	char	*(*p[12]) (t_node **a, t_node **b);
+	char	*(*p[12])(t_node **a, t_node **b);
 	int		len;
 	int		*arr;
 	int		chunk_size;
 	int		is_b;
 }				t_utils;
-
-void	add_last(t_node **main, t_node *new);
-
 
 /*
 	** Sort
@@ -50,16 +42,18 @@ t_node	*sort_three_nums(t_node *a, t_node *b, t_utils utils);
 t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils);
 int		*sort_array(t_node *a, int len);
 
-int     get_elm(t_node *a, int *chunk, t_utils utils);
+int		get_elm(t_node *a, int *chunk, t_utils utils);
 int		keep_looping(t_node *a, int *chunk, t_utils utils);
 int		get_last_data(t_node *main);
 int		stack_len(t_node *main);
 int		get_index(t_node *a, int elm);
+int		assign_i(t_node *a, t_node *b, t_utils utils, int elm);
 
 /*
 	** Utils
 */
 
+void	add_last(t_node **main, t_node *new);
 void	print_stack(t_node *main);
 int		check(t_node *main, t_node *b);
 int		check_a(t_node *main);
@@ -89,6 +83,5 @@ void	ft_reverse(t_node **main);
 char	*reverse_a(t_node **a, t_node **b);
 char	*reverse_b(t_node **a, t_node **b);
 char	*reverse_s(t_node **a, t_node **b);
-
 
 #endif

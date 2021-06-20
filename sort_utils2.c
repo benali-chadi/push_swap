@@ -55,3 +55,11 @@ int	get_index(t_node *a, int elm)
 	}
 	return (i);
 }
+
+int	assign_i(t_node *a, t_node *b, t_utils utils, int elm)
+{
+	if (!utils.is_b)
+		return (get_index(a, elm));
+	else
+		return (get_index(b, elm));
+}

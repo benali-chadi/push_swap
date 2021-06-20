@@ -3,9 +3,9 @@
 #include <time.h>
 
 void	print_stack(t_node *main)
- {
-	t_node *tmp;
-	
+{
+	t_node	*tmp;
+
 	if (main->is_empty)
 	{
 		printf("empty\n");
@@ -22,7 +22,7 @@ void	print_stack(t_node *main)
 
 void	add_last(t_node **main, t_node *new)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
 	if ((*main)->next == *main)
 	{
@@ -35,7 +35,6 @@ void	add_last(t_node **main, t_node *new)
 	tmp = (*main)->next;
 	while (tmp->next != *main)
 		tmp = tmp->next;
-	
 	(*main)->prev = new;
 	tmp->next = new;
 	new->prev = tmp;
@@ -53,7 +52,8 @@ void	init_stack_b(t_node **b)
 
 void	init_main(t_node **main, char **av)
 {
-	int i;
+	int	i;
+	t_node *new;
 
 	i = 2;
 	(*main) = malloc(sizeof(t_node));
@@ -63,19 +63,19 @@ void	init_main(t_node **main, char **av)
 	(*main)->is_empty = 0;
 	while (av[i])
 	{
-		t_node *new = malloc(sizeof(t_node));
+		new = malloc(sizeof(t_node));
 		new->data = atoi(av[i]);
 		add_last(main, new);
 		i++;
 	}	
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int i;
-	t_node *main;
-	t_node *main_b;
-	t_utils utils;
+	int		i;
+	t_node	*main;
+	t_node	*main_b;
+	t_utils	utils;
 
 	init_p(utils.p);
 	init_stack_b(&main_b);
