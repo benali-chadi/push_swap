@@ -1,5 +1,4 @@
-# include "../push_swap.h"
-
+#include "../push_swap.h"
 
 static void	push_to_b(t_node **b, int data, t_node *tmp)
 {
@@ -57,7 +56,6 @@ void	ft_push(t_node **a, t_node **b)
 		return ;
 	data = (*a)->data;
 	push_from_a(a);
-
 	push_to_b(b, data, tmp);
 }
 
