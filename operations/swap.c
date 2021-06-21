@@ -15,19 +15,19 @@ char	*swap_a(t_node **a, t_node **b)
 {
 	(void)b;
 	ft_swap(a);
-	return ("SA\n");
+	return ("sa\n");
 }
 
 char	*swap_b(t_node **a, t_node **b)
 {
 	(void)a;
 	ft_swap(b);
-	return ("SB\n");
+	return ("sb\n");
 }
 
 char	*swap_s(t_node **a, t_node **b)
 {
 	ft_swap(a);
 	ft_swap(b);
-	return ("SS\n");
+	return ("ss\n");
 }

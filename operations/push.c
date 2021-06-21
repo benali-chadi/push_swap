@@ -62,11 +62,11 @@ void	ft_push(t_node **a, t_node **b)
 char	*push_a(t_node **a, t_node **b)
 {
 	ft_push(b, a);
-	return ("PA\n");
+	return ("pa\n");
 }
 
 char	*push_b(t_node **a, t_node **b)
 {
 	ft_push(a, b);
-	return ("PB\n");
+	return ("pb\n");
 }

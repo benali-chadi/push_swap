@@ -16,19 +16,19 @@ char	*rotate_a(t_node **a, t_node **b)
 {
 	(void)b;
 	ft_rotate(a);
-	return ("RA\n");
+	return ("ra\n");
 }
 
 char	*rotate_b(t_node **a, t_node **b)
 {
 	(void)a;
 	ft_rotate(b);
-	return ("RB\n");
+	return ("rb\n");
 }
 
 char	*rotate_s(t_node **a, t_node **b)
 {
 	ft_rotate(a);
 	ft_rotate(b);
-	return ("RR\n");
+	return ("rr\n");
 }

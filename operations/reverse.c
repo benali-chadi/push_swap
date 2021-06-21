@@ -16,19 +16,19 @@ char	*reverse_a(t_node **a, t_node **b)
 {
 	(void)b;
 	ft_reverse(a);
-	return ("RRA\n");
+	return ("rra\n");
 }
 
 char	*reverse_b(t_node **a, t_node **b)
 {
 	(void)a;
 	ft_reverse(b);
-	return ("RRB\n");
+	return ("rrb\n");
 }
 
 char	*reverse_s(t_node **a, t_node **b)
 {
 	ft_reverse(a);
 	ft_reverse(b);
-	return ("RRR\n");
+	return ("rrr\n");
 }

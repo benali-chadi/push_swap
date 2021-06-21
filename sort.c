@@ -25,7 +25,6 @@ int	for_b(t_node *a, t_node *b, t_utils utils)
 
 t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils)
 {
-	int	i = 0;
 	int	d;
 
 	while (!check(a, b))
@@ -42,14 +41,12 @@ t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils)
 		else if (!a->is_empty)
 			ft_putstr_fd(utils.p[PB](&a, &b), 1);
 		else if (!check_b(b) && for_b(a, b, utils))
-			;
-		i++;
+			{}
 	}
-	printf("i=%d\n", i);
 	return (a);
 }
 
-void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm, int *count)
+void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm)
 {
 	int	i;
 	int	mid;
@@ -68,10 +65,8 @@ void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm, int *count)
 		else if (i > mid)
 			ft_putstr_fd(utils.p[RRA + utils.is_b](a, b), 1);
 		i = assing_i(*a, *b, utils, elm);
-		(*count)++;
 	}
 	ft_putstr_fd(utils.p[PB + utils.is_b](a, b), 1);
-	(*count)++;
 }
 
 void	sort(t_node *a, t_node *b, t_utils utils)
@@ -80,7 +75,6 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 	int	j;
 	int	elm;
 	int	c;
-	int	count = 0;
 
 	j = 0;
 	utils.is_b = 0;
@@ -95,7 +89,7 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 		while (keep_looping(a, chunk, utils) && !a->is_empty)
 		{
 			elm = get_elm(a, chunk, utils);
-			get_elm_to_top(&a, &b, utils, elm, &count);
+			get_elm_to_top(&a, &b, utils, elm);
 		}
 	}
 	j = utils.len - 1;
@@ -103,8 +97,7 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 	while (!b->is_empty)
 	{
 		elm = utils.arr[j--];
-		get_elm_to_top(&a, &b, utils, elm, &count);
+		get_elm_to_top(&a, &b, utils, elm);
 	}
 	free(chunk);
-	printf("count = %d\n", count);
 }

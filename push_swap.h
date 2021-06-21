@@ -32,6 +32,8 @@ typedef struct s_utils
 	int		chunk_size;
 	int		is_b;
 	int		next;
+	char	*ops[11];
+
 }				t_utils;
 
 /*
@@ -62,6 +64,9 @@ int		check_b(t_node *main);
 void	init_p(char *(*p[12])(t_node **a, t_node **b));
 int		stack_len(t_node *main);
 void	error_and_exit(char *av, long long data);
+void	init_main(t_node **main, char **av);
+void	init_stack_b(t_node **b);
+void	add_last(t_node **main, t_node *new);
 
 /*
 	** Operations
