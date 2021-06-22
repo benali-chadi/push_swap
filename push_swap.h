@@ -91,4 +91,11 @@ char	*reverse_a(t_node **a, t_node **b);
 char	*reverse_b(t_node **a, t_node **b);
 char	*reverse_s(t_node **a, t_node **b);
 
+/*
+	** Checker Utils
+*/
+
+char	*ft_stock(char *line, char *buff, int i);
+char	*read_in();
+
 #endif

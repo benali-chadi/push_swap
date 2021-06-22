@@ -1,57 +1,5 @@
 #include "../push_swap.h"
 
-// for input reading from args: utils and utils2
-// for operations: operation/*.c
-char	*ft_stock(char *line, char *buff, int i)
-{
-	char	*newline;
-	int		len;
-	int		j;
-
-	j = 0;
-	len = 0;
-	if (line)
-		len = ft_strlen(line);
-	if (!(newline = (char *)malloc(len + i + 1)))
-		return (0);
-	while (j < len)
-	{
-		newline[j] = line[j];
-		j++;
-	}
-	if (line)
-	{
-		free(line);
-		line = NULL;
-	}
-	while (j < len + i)
-	{
-		newline[j] = buff[j - len];
-		j++;
-	}
-	newline[j] = '\0';
-	return (newline);
-}
-
-char	*read_in()
-{
-	char	*ret;
-	char	*buf;
-	int		i;
-
-	ret = NULL;
-	buf = malloc(4);
-	if (!buf)
-		return (NULL);
-	while ((i = read(0, buf, 3)))
-	{
-		buf[i] = '\0';
-		ret = ft_stock(ret, buf, i);
-	}
-	free(buf);
-	return (ret);
-}
-
 void	init_ops(char *ops[11])
 {
 	ops[0] = "sa";
