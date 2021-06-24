@@ -97,6 +97,7 @@ char	*reverse_s(t_node **a, t_node **b);
 */
 
 char	*ft_stock(char *line, char *buff, int i);
-char	*read_in(void);
+void	read_in(t_node **a, t_node **b, t_utils utils);
+void	exec_insts(t_node **a, t_node **b, t_utils utils, char *buf);
 
 #endif

@@ -19,7 +19,7 @@ void	init_main(t_node **main, char **av)
 		error_and_exit(av[i], new->data);
 		add_last(main, new);
 		i++;
-	}	
+	}
 }
 
 void	init_stack_b(t_node **b)
@@ -35,6 +35,8 @@ void	add_last(t_node **main, t_node *new)
 {
 	t_node	*tmp;
 
+	if (new->data == (*main)->data)
+		error_and_exit(NULL, 0);
 	if ((*main)->next == *main)
 	{
 		(*main)->next = new;
@@ -43,12 +45,10 @@ void	add_last(t_node **main, t_node *new)
 		new->next = *main;
 		return ;
 	}
-	if (new->data == (*main)->data)
-		error_and_exit(NULL, 0);
 	tmp = (*main)->next;
 	while (tmp->next != *main)
 	{
-		if (new->data == tmp->data)
+		if (new->data == tmp->data || new->data == tmp->next->data)
 			error_and_exit(NULL, 0);
 		tmp = tmp->next;
 	}
