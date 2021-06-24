@@ -33,10 +33,6 @@ long long	ft_atoi(const char *str)
 	{
 		res = res * 10 + (str[i] - 48);
 		i++;
-		// if (res > 2147483648 && signe == -1)
-		// 	return (0);
-		// else if (res > 2147483647 && signe == 1)
-		// 	return (-1);
 	}
 	return (res * signe);
 }

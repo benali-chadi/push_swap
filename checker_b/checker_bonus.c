@@ -17,7 +17,7 @@ void	init_ops(char *ops[11])
 
 int	check_inst(char *ops[11], char *ins)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 11)
@@ -32,7 +32,7 @@ int	check_inst(char *ops[11], char *ins)
 void	exec_insts(t_node **a, t_node **b, t_utils utils, char **split)
 {
 	int	i;
-	int inst;
+	int	inst;
 
 	i = 0;
 	while (split[i])
@@ -48,12 +48,12 @@ void	exec_insts(t_node **a, t_node **b, t_utils utils, char **split)
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_node *a;
-	t_node *b;
-	t_utils utils;
-	char    **split;
+	t_node		*a;
+	t_node		*b;
+	t_utils		utils;
+	char		**split;
 
 	init_p(utils.p);
 	init_stack_b(&b);

@@ -41,7 +41,7 @@ t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils)
 		else if (!a->is_empty)
 			ft_putstr_fd(utils.p[PB](&a, &b), 1);
 		else if (!check_b(b) && for_b(a, b, utils))
-			{}
+			;
 	}
 	return (a);
 }

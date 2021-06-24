@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-char	*read_in()
+char	*read_in(void)
 {
 	char	*ret;
 	char	*buf;
@@ -10,10 +10,12 @@ char	*read_in()
 	buf = malloc(4);
 	if (!buf)
 		return (NULL);
-	while ((i = read(0, buf, 3)))
+	i = read(0, buf, 3);
+	while (i)
 	{
 		buf[i] = '\0';
 		ret = ft_stock(ret, buf, i);
+		i = read(0, buf, 3);
 	}
 	free(buf);
 	return (ret);
@@ -29,7 +31,8 @@ char	*ft_stock(char *line, char *buff, int i)
 	len = 0;
 	if (line)
 		len = ft_strlen(line);
-	if (!(newline = (char *)malloc(len + i + 1)))
+	newline = (char *)malloc(len + i + 1);
+	if (!newline)
 		return (0);
 	while (++j < len)
 		newline[j] = line[j];

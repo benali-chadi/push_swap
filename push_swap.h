@@ -19,7 +19,7 @@
 typedef struct s_node
 {
 	long long		data;
-	int 			is_empty;
+	int				is_empty;
 	struct s_node	*next;
 	struct s_node	*prev;
 }				t_node;
@@ -96,6 +96,6 @@ char	*reverse_s(t_node **a, t_node **b);
 */
 
 char	*ft_stock(char *line, char *buff, int i);
-char	*read_in();
+char	*read_in(void);
 
 #endif
