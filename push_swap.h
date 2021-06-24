@@ -27,6 +27,7 @@ typedef struct s_node
 typedef struct s_utils
 {
 	char	*(*p[12])(t_node **a, t_node **b);
+	int		*chunk;
 	int		len;
 	int		*arr;
 	int		chunk_size;
@@ -67,6 +68,7 @@ void	error_and_exit(char *av, long long data);
 void	init_main(t_node **main, char **av);
 void	init_stack_b(t_node **b);
 void	add_last(t_node **main, t_node *new);
+void	assign_for_norm(int *j, t_utils utils, int for_j, int for_b);
 
 /*
 	** Operations

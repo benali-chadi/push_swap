@@ -57,3 +57,13 @@ void	add_last(t_node **main, t_node *new)
 	new->prev = tmp;
 	new->next = *main;
 }
+
+void	assign_for_norm(int *j, t_utils utils, int for_j, int for_b)
+{
+	*j = for_j;
+	utils.is_b = for_b;
+	if (!for_b)
+		utils.chunk = malloc(utils.chunk_size * sizeof(int));
+	else
+		free(utils.chunk);
+}

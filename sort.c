@@ -71,33 +71,28 @@ void	get_elm_to_top(t_node **a, t_node **b, t_utils utils, int elm)
 
 void	sort(t_node *a, t_node *b, t_utils utils)
 {
-	int	*chunk;
 	int	j;
 	int	elm;
 	int	c;
 
-	j = 0;
-	utils.is_b = 0;
-	chunk = malloc(utils.chunk_size * sizeof(int));
 	if (check(a, b))
 		return ;
+	assign_for_norm(&j, utils, 0, 0);
 	while (!a->is_empty)
 	{
 		c = 0;
 		while (c < utils.chunk_size && j < utils.len)
-			chunk[c++] = utils.arr[j++];
-		while (keep_looping(a, chunk, utils) && !a->is_empty)
+			utils.chunk[c++] = utils.arr[j++];
+		while (keep_looping(a, utils.chunk, utils) && !a->is_empty)
 		{
-			elm = get_elm(a, chunk, utils);
+			elm = get_elm(a, utils.chunk, utils);
 			get_elm_to_top(&a, &b, utils, elm);
 		}
 	}
-	j = utils.len - 1;
-	utils.is_b = 1;
+	assign_for_norm(&j, utils, utils.len - 1, 1);
 	while (!b->is_empty)
 	{
 		elm = utils.arr[j--];
 		get_elm_to_top(&a, &b, utils, elm);
 	}
-	free(chunk);
 }
