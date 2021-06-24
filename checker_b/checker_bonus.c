@@ -65,9 +65,9 @@ int	main(int ac, char **av)
 		if (split)
 			exec_insts(&a, &b, utils, split);
 		if (check(a, b))
-			ft_putstr_fd("ok\n", 1);
+			ft_putstr_fd("OK\n", 1);
 		else
-			ft_putstr_fd("ko\n", 1);
+			ft_putstr_fd("KO\n", 1);
 	}
 	return (0);
 }

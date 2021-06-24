@@ -1,23 +1,5 @@
 #include "push_swap.h"
 
-void	print_stack(t_node *main)
-{
-	t_node	*tmp;
-
-	if (main->is_empty)
-	{
-		printf("empty\n");
-		return ;
-	}
-	printf("%lld\n", main->data);
-	tmp = main->next;
-	while (tmp && tmp != main)
-	{
-		printf("%lld\n", tmp->data);
-		tmp = tmp->next;
-	}
-}
-
 int	main(int ac, char **av)
 {
 	t_node	*main;

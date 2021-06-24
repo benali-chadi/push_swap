@@ -77,7 +77,7 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 
 	if (check(a, b))
 		return ;
-	assign_for_norm(&j, utils, 0, 0);
+	assign_for_norm(&j, &utils, 0, 0);
 	while (!a->is_empty)
 	{
 		c = 0;
@@ -89,7 +89,7 @@ void	sort(t_node *a, t_node *b, t_utils utils)
 			get_elm_to_top(&a, &b, utils, elm);
 		}
 	}
-	assign_for_norm(&j, utils, utils.len - 1, 1);
+	assign_for_norm(&j, &utils, utils.len - 1, 1);
 	while (!b->is_empty)
 	{
 		elm = utils.arr[j--];

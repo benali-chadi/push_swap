@@ -58,7 +58,6 @@ int		compare(int *chunk, int data, t_utils utils);
 */
 
 void	add_last(t_node **main, t_node *new);
-void	print_stack(t_node *main);
 int		check(t_node *main, t_node *b);
 int		check_a(t_node *main);
 int		check_b(t_node *main);
@@ -68,7 +67,7 @@ void	error_and_exit(char *av, long long data);
 void	init_main(t_node **main, char **av);
 void	init_stack_b(t_node **b);
 void	add_last(t_node **main, t_node *new);
-void	assign_for_norm(int *j, t_utils utils, int for_j, int for_b);
+void	assign_for_norm(int *j, t_utils *utils, int for_j, int for_b);
 
 /*
 	** Operations
