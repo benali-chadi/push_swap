@@ -1,8 +1,8 @@
 #include "../push_swap.h"
 
-static void	push_to_b(t_node **b, int data, t_node *tmp)
+static void	push_to_b(t_node **b, int data, t_node *tmp, t_utils **utils)
 {
-	tmp = malloc(sizeof(t_node));
+	tmp = m_malloc(sizeof(t_node), *utils);
 	tmp->data = data;
 	if ((*b)->is_empty)
 	{
@@ -13,8 +13,8 @@ static void	push_to_b(t_node **b, int data, t_node *tmp)
 	}
 	else if ((*b)->next == *b)
 	{
-		tmp->next = (*b);
-		tmp->prev = (*b);
+		tmp->next = *b;
+		tmp->prev = *b;
 		(*b)->next = tmp;
 		(*b)->prev = tmp;
 	}
@@ -46,7 +46,7 @@ static void	push_from_a(t_node **a)
 	}
 }
 
-void	ft_push(t_node **a, t_node **b)
+void	ft_push(t_node **a, t_node **b, t_utils **utils)
 {
 	int		data;
 	t_node	*tmp;
@@ -56,17 +56,17 @@ void	ft_push(t_node **a, t_node **b)
 		return ;
 	data = (*a)->data;
 	push_from_a(a);
-	push_to_b(b, data, tmp);
+	push_to_b(b, data, tmp, utils);
 }
 
-char	*push_a(t_node **a, t_node **b)
+char	*push_a(t_node **a, t_node **b, t_utils *utils)
 {
-	ft_push(b, a);
+	ft_push(b, a, &utils);
 	return ("pa\n");
 }
 
-char	*push_b(t_node **a, t_node **b)
+char	*push_b(t_node **a, t_node **b, t_utils *utils)
 {
-	ft_push(a, b);
+	ft_push(a, b, &utils);
 	return ("pb\n");
 }

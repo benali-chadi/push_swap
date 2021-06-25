@@ -1,38 +1,24 @@
 #include "../push_swap.h"
 
-int	stop(char *buf)
+char	*read_in(void)
 {
-	int i;
-
-	i = 0;
-	while (buf[i] && buf[i] != '\n')
-		i++;
-	return (i);
-}
-
-void	read_in(t_node **a, t_node **b, t_utils utils)
-{
-	char	*str;
+	char	*ret;
 	char	*buf;
 	int		i;
 
-	str = NULL;
-	buf = malloc(5);
+	ret = NULL;
+	buf = malloc(4);
 	if (!buf)
-		exit(1);
-	i = read(0, buf, 3);
+		return (NULL);
+	i = read(0, buf, 4);
 	while (i)
 	{
-		if (i == 1 && !ft_isalpha(buf[1]))
-			error_and_exit(NULL, 0);
-		else if (i == 1)
-			i = read(0, buf, 3);
 		buf[i] = '\0';
-		buf[stop(buf)] = '\0';
-		exec_insts(a, b, utils, buf);
+		ret = ft_stock(ret, buf, i);
 		i = read(0, buf, 3);
 	}
 	free(buf);
+	return (ret);
 }
 
 char	*ft_stock(char *line, char *buff, int i)

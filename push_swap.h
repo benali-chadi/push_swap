@@ -26,25 +26,26 @@ typedef struct s_node
 
 typedef struct s_utils
 {
-	char	*(*p[12])(t_node **a, t_node **b);
-	int		*chunk;
-	int		len;
-	int		*arr;
-	int		chunk_size;
-	int		is_b;
-	int		next;
-	char	*ops[11];
-
+	char		*(*p[12])(t_node **a, t_node **b, struct s_utils *utils);
+	int			*chunk;
+	int			len;
+	int			*arr;
+	int			chunk_size;
+	int			is_b;
+	int			next;
+	char		*ops[11];
+	int			i;
+	void		*alloc[10000];
 }				t_utils;
 
 /*
 	** Sort
 */
 
-void	sort(t_node *a, t_node *b, t_utils utils);
+void	sort(t_node *a, t_node *b, t_utils *utils);
 t_node	*sort_three_nums(t_node *a, t_node *b, t_utils utils);
 t_node	*sort_few_nums(t_node *a, t_node *b, t_utils utils);
-int		*sort_array(t_node *a, int len);
+int		*sort_array(t_node *a, int len, t_utils *utils);
 
 int		get_elm(t_node *a, int *chunk, t_utils utils);
 int		keep_looping(t_node *a, int *chunk, t_utils utils);
@@ -61,43 +62,46 @@ void	add_last(t_node **main, t_node *new);
 int		check(t_node *main, t_node *b);
 int		check_a(t_node *main);
 int		check_b(t_node *main);
-void	init_p(char *(*p[12])(t_node **a, t_node **b));
+void	init_p(char *(*p[12])(t_node **a, t_node **b, t_utils *utils));
 int		stack_len(t_node *main);
 void	error_and_exit(char *av, long long data);
-void	init_main(t_node **main, char **av);
-void	init_stack_b(t_node **b);
+void	init_main(t_node **main, char **av, t_utils *utils);
+void	init_stack_b(t_node **b, t_utils *utils);
 void	add_last(t_node **main, t_node *new);
 void	assign_for_norm(int *j, t_utils *utils, int for_j, int for_b);
+
+void	*m_malloc(size_t n, t_utils *utils);
+void	to_free(t_utils *utils);
 
 /*
 	** Operations
 */
 
 void	ft_swap(t_node **main);
-char	*swap_a(t_node **a, t_node **b);
-char	*swap_b(t_node **a, t_node **b);
-char	*swap_s(t_node **a, t_node **b);
+char	*swap_a(t_node **a, t_node **b, t_utils *utils);
+char	*swap_b(t_node **a, t_node **b, t_utils *utils);
+char	*swap_s(t_node **a, t_node **b, t_utils *utils);
 
-void	ft_push(t_node **a, t_node **b);
-char	*push_a(t_node **a, t_node **b);
-char	*push_b(t_node **a, t_node **b);
+void	ft_push(t_node **a, t_node **b, t_utils **utils);
+char	*push_a(t_node **a, t_node **b, t_utils *utils);
+char	*push_b(t_node **a, t_node **b, t_utils *utils);
 
 void	ft_rotate(t_node **main);
-char	*rotate_a(t_node **a, t_node **b);
-char	*rotate_b(t_node **a, t_node **b);
-char	*rotate_s(t_node **a, t_node **b);
+char	*rotate_a(t_node **a, t_node **b, t_utils *utils);
+char	*rotate_b(t_node **a, t_node **b, t_utils *utils);
+char	*rotate_s(t_node **a, t_node **b, t_utils *utils);
 
 void	ft_reverse(t_node **main);
-char	*reverse_a(t_node **a, t_node **b);
-char	*reverse_b(t_node **a, t_node **b);
-char	*reverse_s(t_node **a, t_node **b);
+char	*reverse_a(t_node **a, t_node **b, t_utils *utils);
+char	*reverse_b(t_node **a, t_node **b, t_utils *utils);
+char	*reverse_s(t_node **a, t_node **b, t_utils *utils);
 
 /*
 	** Checker Utils
 */
 
 char	*ft_stock(char *line, char *buff, int i);
-void	read_in(t_node **a, t_node **b, t_utils utils);
-void	exec_insts(t_node **a, t_node **b, t_utils utils, char *buf);
+char	*read_in(void);
+void	exec_insts(t_node **a, t_node **b, t_utils *utils, char **split);
 
 #endif

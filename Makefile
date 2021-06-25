@@ -5,12 +5,12 @@ NAME = push_swap
 NAMELIB = libft.a
 
 SRC = push_swap.c sort.c \
-	sort_utils.c sort_utils2.c utils.c utils2.c\
+	sort_utils.c sort_utils2.c utils.c utils2.c to_free.c\
 	operations/push.c operations/reverse.c operations/swap.c operations/rotate.c
 
 B_NAME = checker
 
-B_SRC = checker_b/*.c operations/*.c utils.c utils2.c
+B_SRC = checker_b/*.c operations/*.c utils.c utils2.c to_free.c
 
 all : $(NAME)
 

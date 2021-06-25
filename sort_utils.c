@@ -77,7 +77,7 @@ int	*insertion_sort(int *arr, int len)
 	return (arr);
 }
 
-int	*sort_array(t_node *a, int len)
+int	*sort_array(t_node *a, int len, t_utils *utils)
 {
 	t_node	*tmp;
 	int		i;
@@ -85,7 +85,7 @@ int	*sort_array(t_node *a, int len)
 
 	len = stack_len(a);
 	i = 0;
-	arr = malloc(len * sizeof(int));
+	arr = m_malloc(len * sizeof(int), utils);
 	arr[i] = a->data;
 	tmp = a->next;
 	i++;

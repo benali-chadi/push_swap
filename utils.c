@@ -57,7 +57,7 @@ int	check(t_node *main, t_node *b)
 	return (1);
 }
 
-void	init_p(char *(*p[12])(t_node **a, t_node **b))
+void	init_p(char *(*p[12])(t_node **a, t_node **b, t_utils *utils))
 {
 	p[0] = swap_a;
 	p[1] = swap_b;
